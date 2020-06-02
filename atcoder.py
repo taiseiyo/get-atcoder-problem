@@ -23,15 +23,17 @@ def get_problem(html):
 
     start = text.find("問題文")
     end = text.find("Score")
-    print(text[start+3:end])
+    return text[start+3:end]
 
 
 def main():
     num = input("Enter a number above 020 : ")
+    file = open("atcoder.txt", "w")
     for alphabet in ["a", "b", "c", "d"]:
         html = generate_url(alphabet, num)
-        get_problem(html)
-        print("change problem")
+        problem_string = get_problem(html)
+        file.write(problem_string+"change problem\n")
+    file.close()
 
 
 main()
